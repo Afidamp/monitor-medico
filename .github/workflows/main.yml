@@ -1,0 +1,23 @@
+name: Controllo Disponibilità Medico
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"  # Controlla ogni 30 minuti
+
+jobs:
+  check_medico:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 selenium
+
+      - name: Run script
+        run: python trova_medico.py
