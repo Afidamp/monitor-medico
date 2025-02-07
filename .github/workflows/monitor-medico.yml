@@ -2,7 +2,7 @@ name: Controllo Disponibilità Medico
 
 on:
   schedule:
-    - cron: "*/30 * * * *"  # Controllo ogni 30 minuti
+    - cron: "0 8 * * *"  # Esegue il controllo alle 08:00 ogni giorno
   workflow_dispatch:  # 🔹 Aggiunto per avvio manuale
 
 jobs:
