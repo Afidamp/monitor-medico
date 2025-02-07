@@ -21,7 +21,19 @@ URL = "https://www.ats-milano.it/trova-medico"
 CODICE_REGIONALE = "34019"
 
 # Imposta il WebDriver per Chrome
-driver = webdriver.Chrome()
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+
+# Configura Chrome per girare in modalità headless
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Modalità senza interfaccia grafica
+chrome_options.add_argument("--no-sandbox")  # Necessario per eseguire in ambienti remoti
+chrome_options.add_argument("--disable-dev-shm-usage")  # Evita problemi di memoria
+chrome_options.add_argument("--disable-gpu")  # Non serve in modalità headless
+
+# Inizializza il driver con le nuove opzioni
+driver = webdriver.Chrome(service=Service(), options=chrome_options)
+
 
 def invia_email():
     """Invia una notifica via email quando il medico ha posti disponibili"""
